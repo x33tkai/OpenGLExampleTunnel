@@ -198,7 +198,6 @@ void SetupRC()
      参数2：顶点数
      参数3：1组或者2组纹理坐标
      */
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     floorBatch.Begin(GL_TRIANGLE_STRIP, 28, 1);
     //参考PPT图6-10
     //Z表示深度，隧道的深度
@@ -211,10 +210,10 @@ void SetupRC()
         floorBatch.Vertex3f(10.0f, -10.0f, z);
         
         floorBatch.MultiTexCoord2f(0, 0.0f, 1.0f);
-        floorBatch.Vertex3f(-10.0f, -10.0f, z + 10.0f);
+        floorBatch.Vertex3f(-10.0f, -10.0f, z - 10.0f);
 
         floorBatch.MultiTexCoord2f(0, 1.0f, 1.0f);
-        floorBatch.Vertex3f(10.0f, -10.0f, z + 10.0f);
+        floorBatch.Vertex3f(10.0f, -10.0f, z - 10.0f);
     }
     floorBatch.End();
    
@@ -222,17 +221,19 @@ void SetupRC()
     ceilingBatch.Begin(GL_TRIANGLE_STRIP, 28, 1);
     for(z = 60.0f; z >= 0.0f; z -=10.0f)
     {
-        ceilingBatch.MultiTexCoord2f(0, 0.0f, 1.0f);
-        ceilingBatch.Vertex3f(-10.0f, 10.0f, z - 10.0f);
-        
-        ceilingBatch.MultiTexCoord2f(0, 1.0f, 1.0f);
-        ceilingBatch.Vertex3f(10.0f, 10.0f, z - 10.0f);
         
         ceilingBatch.MultiTexCoord2f(0, 0.0f, 0.0f);
         ceilingBatch.Vertex3f(-10.0f, 10.0f, z);
         
         ceilingBatch.MultiTexCoord2f(0, 1.0f, 0.0f);
         ceilingBatch.Vertex3f(10.0f, 10.0f, z);
+        
+        ceilingBatch.MultiTexCoord2f(0, 0.0f, 1.0f);
+        ceilingBatch.Vertex3f(-10.0f, 10.0f, z - 10.0f);
+        
+        ceilingBatch.MultiTexCoord2f(0, 1.0f, 1.0f);
+        ceilingBatch.Vertex3f(10.0f, 10.0f, z - 10.0f);
+        
     }
     ceilingBatch.End();
     
